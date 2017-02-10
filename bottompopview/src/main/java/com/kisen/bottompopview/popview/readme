@@ -1,0 +1,27 @@
+自定义控件、特效、封装的艺术
+
+自定义控件：自绘控件、继承控件、组合控件
+onDraw(canvas)
+
+贝塞尔曲线---不断地变化的
+
+思路：
+1、确定使用工具
+    Dialog 不可以
+    PopupWindow 可以，但是按一下HOME键，可能还会悬浮在屏幕上面
+    fragment 可以，但是需要定义一个布局承载它，就无法达到插件化的封装效果
+
+    呼之即来挥之即去的效果
+
+    HierarchyView的一部分
+    ViewRoot的一部分
+    从ViewRoot里面找到一个帧布局，然后往里面addView(xxx)
+
+    DecorView
+
+    <FrameLayout android:id="@android:id/content"
+
+2、确认工具类结构（类似Toast使用方式设计结果）
+
+
+
