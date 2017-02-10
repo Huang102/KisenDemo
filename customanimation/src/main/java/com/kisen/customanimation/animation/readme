@@ -1,0 +1,6 @@
+思路：1、模仿Path设计一个AnimatorPath，来存储一系列的动作指令和对应的参数
+     2、使用估值器修正参数
+     3、使用ObjectAnimator.ofObject()方法配合估值器完成动画
+
+注意：ObjectAnimatorHelper不能被混淆
+        -keep XXX.animation.ObjectAnimatorHelper ---> "XXX"是animation文件夹的上层路径
