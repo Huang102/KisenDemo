@@ -12,34 +12,34 @@ public class PathPoint {
     /**
      * 移动到某个点
      */
-    public static final int MOVE = 0;
+    private static final int MOVE = 0;
     /**
      * 直线运动到某个点
      */
-    public static final int LINE = 1;
+    static final int LINE = 1;
     /**
      * 贝塞尔曲线运动到某个点
      */
-    public static final int CUBIC = 2;
+    static final int CUBIC = 2;
 
     /**
      * 操作指令
      */
-    public int mOperation;
+    int mOperation;
 
     /**
      * 存储View的X坐标
      */
-    public float mPathX;
+    float mPathX;
     /**
      * 存储View的Y坐标
      */
-    public float mPathY;
+    float mPathY;
 
     /**
      * 用于贝塞尔曲线坐标存储
      */
-    public float mPathX1, mPathX2, mPathY1, mPathY2;
+    float mPathX1, mPathX2, mPathY1, mPathY2;
 
     private PathPoint(int operation, float x, float y) {
         mOperation = operation;
@@ -60,21 +60,21 @@ public class PathPoint {
     /**
      * 存储移动到的坐标位置
      */
-    public static PathPoint moveTo(float x, float y) {
+    static PathPoint moveTo(float x, float y) {
         return new PathPoint(MOVE, x, y);
     }
 
     /**
      * 存储直线运动到的坐标位置
      */
-    public static PathPoint lineTo(float x, float y) {
+    static PathPoint lineTo(float x, float y) {
         return new PathPoint(LINE, x, y);
     }
 
     /**
      * 存储贝塞尔曲线的运动轨迹坐标
      */
-    public static PathPoint cubicTo(float pointX0, float pointY0, float pointX1, float pointY1, float pointX2, float pointY2) {
+    static PathPoint cubicTo(float pointX0, float pointY0, float pointX1, float pointY1, float pointX2, float pointY2) {
         return new PathPoint(pointX0, pointY0, pointX1, pointY1, pointX2, pointY2);
     }
 
