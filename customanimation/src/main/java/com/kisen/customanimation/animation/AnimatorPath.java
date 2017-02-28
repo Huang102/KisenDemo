@@ -43,8 +43,8 @@ public class AnimatorPath {
      * @param pointY0 第一个拐点的y坐标
      * @param pointX1 第二个拐点的x坐标
      * @param pointY1 第二个拐点的y坐标
-     * @param pointX2 第三个拐点的x坐标
-     * @param pointY2 第三个拐点的y坐标
+     * @param pointX2 终点的x坐标
+     * @param pointY2 终点的y坐标
      */
     public void cubicTo(float pointX0, float pointY0, float pointX1, float pointY1, float pointX2, float pointY2) {
         points.add(PathPoint.cubicTo(pointX0, pointY0, pointX1, pointY1, pointX2, pointY2));

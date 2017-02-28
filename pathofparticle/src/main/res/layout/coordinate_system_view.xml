@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:background="#ccc">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_gravity="center"
+            android:background="#000" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="300dp"
+            android:layout_marginLeft="50dp"
+            android:background="#000" />
+
+        <com.kisen.sindemo.util.BgView
+            android:id="@+id/bg_view"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="48.5dp" />
+
+        <View
+            android:id="@+id/point"
+            android:layout_width="5dp"
+            android:layout_height="5dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="50dp"
+            android:background="@color/colorPrimary" />
+
+    </FrameLayout>
+
+</LinearLayout>
