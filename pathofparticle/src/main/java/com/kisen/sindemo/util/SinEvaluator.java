@@ -1,6 +1,7 @@
 package com.kisen.sindemo.util;
 
 import android.animation.TypeEvaluator;
+import android.util.Log;
 
 /**
  * @Title :
@@ -71,12 +72,83 @@ public class SinEvaluator implements TypeEvaluator<SinPoint> {
 //                        break;
 //                }
                 break;
+            case SinPoint.FIBBONACCI:
+                int count = endValue.getCount();
+                //当前所在的螺旋线(数列中第几个数对应的弧)
+                int currentIndex = (int) (fraction * count) + 1;
+                //每段四分之一圆弧的运动时间
+                float t_count = 1f / count;
+                int currentR = fibbonacci(currentIndex);
+                //当前运动圆弧轨迹的原点
+                float ox = fibOx(currentIndex, endValue);
+                float oy = fibOy(currentIndex, endValue);
+
+                double thetaFib;
+                float t = (fraction - (currentIndex - 1) * t_count)/t_count;
+                switch (currentIndex % 4) {
+                    case 1://第一象限:原点x坐标变化-->负方向移动
+                        thetaFib = Math.PI * t / 2;
+                        break;
+                    case 2://第二象限:原点y坐标变化-->负方向移动
+                        thetaFib = Math.PI * t / 2 + Math.PI / 2;
+                        break;
+                    case 3://第三象限:原点x坐标变化-->正方向移动
+                        thetaFib = Math.PI * t / 2 + Math.PI;
+                        break;
+                    default://第四象限:原点y坐标变化-->正方向移动
+                        thetaFib = Math.PI * t / 2 + Math.PI * 3 / 2;
+                        break;
+                }
+                x = (float) (ox + currentR * Math.cos(thetaFib));
+                y = (float) (oy + currentR * Math.sin(thetaFib));
+//                Log.e("point", "thetaFib：" + thetaFib + "  x：" + x + "  y：" + y + "  ox：" + ox + "  oy：" + oy);
+
+//                //根据公式得到 r = Math.pow(e,2*ln(fy)*theta/Math.PI
+//                int count = endValue.getCount();
+//                double fy = 137.5f / 180 * Math.PI;
+//                double thetaFib = count / 4f * 2 * Math.PI * fraction;
+//                double r = Math.pow(Math.E, 2 * Math.log1p(fy - 1) * thetaFib / Math.PI);
+//                x = (float) (endValue.getX() + r * Math.cos(thetaFib));
+//                y = (float) (endValue.getY() + r * Math.sin(thetaFib));
+//                Log.e("point", "thetaFib：" + thetaFib + "  x：" + x + "  y：" + y);
+                break;
             default:
                 x = endValue.getX();
                 y = 0;
                 break;
         }
         return SinPoint.move(x, y);
+    }
+
+    /**
+     * 得到斐波那契数列对应位置的值
+     * [（1＋√5）/2]^n /√5 － [（1－√5）/2]^n /√5
+     */
+    public int fibbonacci(int index) {
+        int f;
+        double sqrt5 = Math.sqrt(5);
+        f = (int) (Math.pow(((1 + sqrt5) / 2), index) / sqrt5 - Math.pow(((1 - sqrt5) / 2), index) / sqrt5);
+        if (f == 0)
+            return fibbonacci(index - 1);
+        return f;
+    }
+
+    private float fibOy(int index, SinPoint endValue) {
+        if (index % 2 == 1)
+            index = index - 1;
+        if (index == 2 || index == 0)
+            return endValue.getY();
+        //index % 4 == 1    判断是否是第二象限
+        return fibOy(index - 2, endValue) + (index % 4 == 0 ? 1 : -1) * fibbonacci(index - 2);
+    }
+
+    private float fibOx(int index, SinPoint endValue) {
+        if (index % 2 == 0)
+            index = index - 1;
+        if (index == 1)
+            return endValue.getX();
+        //(index + 1) % 4 == 0   判断是否是第三象限
+        return fibOx(index - 2, endValue) + ((index + 1) % 4 == 0 ? 1 : -1) * fibbonacci(index - 2);
     }
 
     /**
@@ -117,6 +189,7 @@ public class SinEvaluator implements TypeEvaluator<SinPoint> {
         for (int i = 1; i <= n; i++) {
             nC *= i;
         }
+
         int rC = 1;
         for (int i = 1; i <= r; i++) {
             rC *= i;

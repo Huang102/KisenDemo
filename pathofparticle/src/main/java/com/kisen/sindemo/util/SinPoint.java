@@ -13,12 +13,17 @@ public class SinPoint {
     public static final int SIN = 1;
     public static final int CIRCLE = 2;
     public static final int CURVE = 3;
+    /**
+     * 斐波那契数列
+     */
+    public static final int FIBBONACCI = 4;
     private int type;
 
     private float x, y, r;
 
     private float[] points;
     private int order;
+    private int count;
 
     /**
      * Circle
@@ -45,6 +50,10 @@ public class SinPoint {
         this.y = -y;
     }
 
+    public static SinPoint fibbonacci(float x, float y, int count) {
+        return new SinPoint(FIBBONACCI, x, y).setCount(count);
+    }
+
     public static SinPoint curve(int order, float... points) {
         return new SinPoint(order, points);
     }
@@ -59,6 +68,15 @@ public class SinPoint {
 
     public static SinPoint move(float x, float y) {
         return new SinPoint(MOVE, x, y);
+    }
+
+    public SinPoint setCount(int count) {
+        this.count = count;
+        return this;
+    }
+
+    public int getCount() {
+        return count;
     }
 
     public int getType() {

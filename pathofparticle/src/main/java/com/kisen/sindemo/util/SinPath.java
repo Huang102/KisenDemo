@@ -13,6 +13,10 @@ public class SinPath {
 
     private ArrayList<SinPoint> points = new ArrayList<>();
 
+    public void fibbonacci(float x, float y, int count) {
+        points.add(SinPoint.fibbonacci(x, y, count));
+    }
+
     public void circle(float x, float y, float r) {
         points.add(SinPoint.circle(x, y, r));
     }

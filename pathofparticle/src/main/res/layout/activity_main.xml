@@ -7,21 +7,27 @@
 
     <Button
         android:id="@+id/sin"
-        android:text="sin"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="sin" />
 
     <Button
         android:id="@+id/circle"
-        android:text="circle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="circle" />
 
     <Button
         android:id="@+id/curve"
-        android:text="curve"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="curve" />
+
+    <Button
+        android:id="@+id/fibbonacci"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="fibbonacci" />
 
 
 </LinearLayout>

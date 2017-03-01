@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.sin).setOnClickListener(this);
         findViewById(R.id.circle).setOnClickListener(this);
         findViewById(R.id.curve).setOnClickListener(this);
+        findViewById(R.id.fibbonacci).setOnClickListener(this);
     }
 
     @Override
@@ -31,6 +32,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.curve:
                 startActivity(new Intent(this,CurveActivity.class));
+                break;
+            case R.id.fibbonacci:
+                startActivity(new Intent(this,FibbonacciActivity.class));
                 break;
         }
     }
