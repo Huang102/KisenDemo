@@ -47,30 +47,8 @@ public class SinEvaluator implements TypeEvaluator<SinPoint> {
                 int length = points.length;
                 if (length != order * 2)
                     throw new IllegalAccessError("可变参数对应的贝塞尔阶数不一致");
-//                float t = fraction;
-//                float _t = 1 - fraction;
-//                float p0x = startValue.getX();
-//                float p0y = startValue.getY();
-//                float p1x = points[0];
-//                float p1y = points[1];
-//                float p2x = points[2];
-//                float p2y = points[3];
-//                switch (order) {
-//                    case 2:
-//                        x = _t * _t * p0x + 2 * t * _t * p1x + t * t * p2x;
-//                        y = _t * _t * p0y + 2 * t * _t * p1y + t * t * p2y;
-//                        break;
-//                    case 3:
-//                        float p3x = points[4];
-//                        float p3y = points[5];
-//                        x = _t * _t * _t * p0x + 3 * p1x * t * _t * _t + 3 * p2x * t * t * _t + p3x * t * t * t;
-//                        y = _t * _t * _t * p0y + 3 * p1y * t * _t * _t + 3 * p2y * t * t * _t + p3y * t * t * t;
-//                        break;
-//                    default:
                 x = bT(true, fraction, startValue, endValue);
                 y = bT(false, fraction, startValue, endValue);
-//                        break;
-//                }
                 break;
             case SinPoint.FIBBONACCI:
                 int count = endValue.getCount();
@@ -84,7 +62,7 @@ public class SinEvaluator implements TypeEvaluator<SinPoint> {
                 float oy = fibOy(currentIndex, endValue);
 
                 double thetaFib;
-                float t = (fraction - (currentIndex - 1) * t_count)/t_count;
+                float t = (fraction - (currentIndex - 1) * t_count) / t_count;
                 switch (currentIndex % 4) {
                     case 1://第一象限:原点x坐标变化-->负方向移动
                         thetaFib = Math.PI * t / 2;
@@ -162,7 +140,7 @@ public class SinEvaluator implements TypeEvaluator<SinPoint> {
         float[] points = endValue.getPoints();
         if (order > 1) {
             float p = 0;
-            float pi = 0;
+            float pi;
             for (int i = 0; i <= order; i++) {
                 if (i == 0) {//默认起始点
                     pi = x ? startValue.getX() : startValue.getY();
@@ -183,25 +161,23 @@ public class SinEvaluator implements TypeEvaluator<SinPoint> {
      * @return 返回结果
      */
     private int c(int r, int n) {
-        int c;
 
-        int nC = 1;
-        for (int i = 1; i <= n; i++) {
-            nC *= i;
-        }
+        int nC = factorial(n);
 
-        int rC = 1;
-        for (int i = 1; i <= r; i++) {
-            rC *= i;
-        }
+        int rC = factorial(r);
 
-        int n_rC = 1;
-        for (int i = 1; i <= n - r; i++) {
-            n_rC *= i;
-        }
+        int n_rC = factorial(n - r);
 
-        c = nC / (rC * n_rC);
-        return c;
+        return nC / (rC * n_rC);
+    }
+
+    /**
+     * 阶乘递归算法
+     */
+    private int factorial(int n) {
+        if (n <= 1)//0的阶乘为1
+            return 1;
+        return n * factorial(n - 1);
     }
 
 }
