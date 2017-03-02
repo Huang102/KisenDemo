@@ -1,3 +1,10 @@
 AnimatorLayout
 支持子控件自定义属性动画
 垂直线性布局
+
+了解XML读取流程（容器控件）
+generateLayoutParams()//获取xml中子控件的属性
+addView()//将控件添加到父容器中
+onMeasure()//计算子控件尺寸，并调用子控件的measure()->子控件的onMeasure()
+onLayout()//排列子控件
+onDraw()//将子控件画在画布上呈现出来
