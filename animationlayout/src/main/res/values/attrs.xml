@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="AnimatorLayout_layoutParams">
+        <attr name="anim_alpha" format="boolean" />
+        <attr name="anim_scaleX" format="boolean" />
+        <attr name="anim_scaleY" format="boolean" />
+        <attr name="anim_fromBgColor" format="color" />
+        <attr name="anim_toBgColor" format="color" />
+        <attr name="anim_match_parent" format="boolean"/>
+        <attr name="anim_transform" />
+    </declare-styleable>
+
+    <attr name="anim_transform">
+        <flag name="fromTop" value="0x01" />
+        <flag name="fromBottom" value="0x02" />
+        <flag name="fromLeft" value="0x04" />
+        <flag name="fromRight" value="0x08" />
+    </attr>
+</resources>

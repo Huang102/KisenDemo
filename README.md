@@ -2,4 +2,5 @@
 自己的一些Demo
 #customanimation自定义运动动画
 #bottompopview 自定义类似Toast工具
-#pathofparticle 结合customanimation自定义实现几种动画效果
+#pathofparticle 结合customanimation自定义实现几种运动轨迹动画效果
+#animationlayout 自定义垂直布局，子控件可以自定义动画效果
