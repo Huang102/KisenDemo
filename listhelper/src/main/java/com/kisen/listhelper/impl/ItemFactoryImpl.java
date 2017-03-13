@@ -9,12 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @Title :
- * @Description :
- * @Version :
+ * 特定实现类
  * Created by huang on 2017/3/3.
  */
-
 class ItemFactoryImpl<D extends IModel> implements ItemFactory<D> {
 
     private final AbsItem<D> item;
@@ -24,7 +21,7 @@ class ItemFactoryImpl<D extends IModel> implements ItemFactory<D> {
     private List<AbsItem> items;
     private ILogic logic;
 
-    public ItemFactoryImpl(AbsItem<D> item, QuickAdapter adapter, ILogic logic) {
+    ItemFactoryImpl(AbsItem<D> item, QuickAdapter adapter, ILogic logic) {
         this.item = item;
         this.adapter = adapter;
         this.logic = logic;
@@ -68,13 +65,7 @@ class ItemFactoryImpl<D extends IModel> implements ItemFactory<D> {
         }
     }
 
-    @Override
-    public ILogic getLogic() {
-        return logic;
-    }
-
-    @Override
-    public void clear() {
+    private void clear() {
         models = null;
         items = null;
     }

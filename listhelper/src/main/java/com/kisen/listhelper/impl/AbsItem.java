@@ -77,15 +77,15 @@ public abstract class AbsItem<D extends IModel> implements Item, View.OnClickLis
         }
     }
 
-    public void setModel(D model) {
+    void setModel(D model) {
         this.model = model;
     }
 
-    public void setAdapter(QuickAdapter adapter) {
+    void setAdapter(QuickAdapter adapter) {
         this.adapter = adapter;
     }
 
-    public void setLogic(ILogic logic) {
+    void setLogic(ILogic logic) {
         this.logic = logic;
     }
 }

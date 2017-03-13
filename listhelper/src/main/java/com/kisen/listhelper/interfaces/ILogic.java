@@ -27,7 +27,7 @@ public interface ILogic {
     /**
      * 返回该Item是否被选中
      *
-     * @param item 判断的iten
+     * @param item 判断的item
      */
     boolean isSelect(AbsItem item);
 

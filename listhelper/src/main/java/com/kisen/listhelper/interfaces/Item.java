@@ -1,6 +1,8 @@
 package com.kisen.listhelper.interfaces;
 
 import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.kisen.recyclerviewhelper.adapter.BaseViewHolder;
 
@@ -18,17 +20,17 @@ public interface Item {
      *
      * @param helper  用来获取Item的控件
      * @param adapterPosition  该Item在Adapter中的位置
-     * @like BaseAdapter's getView()
+     * {@link android.widget.BaseAdapter#getView(int, View, ViewGroup)}
      */
     void setViewData(Context context,BaseViewHolder helper, int adapterPosition);
 
     /**
      * 需要实现，默认返回0，同一列表中出现多种不同的布局时，必须返回不同的类型，
      * 如果返回相同的值，会因BaseViewHolder复用出现布局错乱，处理数据时异常
-     * 在{@like getViewResId()}中已经把对应的布局返回给适配器
+     * 在{@link Item#getViewResId()}中已经把对应的布局返回给适配器
      *
      * @return 返回当前自定义Item类型
-     * @like BaseAdapter's getItemViewType()
+     * {@link android.widget.BaseAdapter#getItemViewType(int)}
      */
     int getType();
 }
