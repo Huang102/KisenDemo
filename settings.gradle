@@ -1,1 +1,1 @@
-include ':bottompopview',':customanimation',':memoryleak',':pathofparticle',':animationlayout', ':listhelper', ':recyclerviewhelper'
+include ':bottompopview',':customanimation',':pathofparticle',':animationlayout', ':listhelper', ':recyclerviewhelper'
