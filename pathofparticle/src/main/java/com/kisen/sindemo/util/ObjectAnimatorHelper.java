@@ -20,7 +20,7 @@ public class ObjectAnimatorHelper {
         this.activity = activity;
     }
 
-    public static ObjectAnimator object(BaseActivity activity, TypeEvaluator evaluator, SinPath path) {
+    public static ObjectAnimator object(BaseActivity activity, TypeEvaluator evaluator, MotionPath path) {
 
         ObjectAnimatorHelper helper = new ObjectAnimatorHelper(activity);
 
@@ -36,7 +36,7 @@ public class ObjectAnimatorHelper {
      * 反射用到的方法
      * @param point ObjectAnimator.ofObject() 方法会反射本类的"point"
      */
-    public void setPoint(SinPoint point) {
+    public void setPoint(MotionPoint point) {
         activity.setPoint(point);
     }
 }

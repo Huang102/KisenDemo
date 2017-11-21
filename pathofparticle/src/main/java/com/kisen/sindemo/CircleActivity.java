@@ -1,14 +1,12 @@
 package com.kisen.sindemo;
 
 import android.animation.Animator;
-import android.animation.ObjectAnimator;
 import android.animation.TypeEvaluator;
 import android.animation.ValueAnimator;
 import android.os.Bundle;
 
-import com.kisen.sindemo.util.SinEvaluator;
-import com.kisen.sindemo.util.SinPath;
-import com.kisen.sindemo.util.SinPoint;
+import com.kisen.sindemo.util.MotionEvaluator;
+import com.kisen.sindemo.util.MotionPath;
 
 public class CircleActivity extends BaseActivity {
 
@@ -19,8 +17,8 @@ public class CircleActivity extends BaseActivity {
     }
 
     @Override
-    protected SinPath getPath() {
-        SinPath path = new SinPath();
+    protected MotionPath getPath() {
+        MotionPath path = new MotionPath();
         path.move(0, 0);
         path.circle(300, 0, 300);
         return path;
@@ -28,7 +26,7 @@ public class CircleActivity extends BaseActivity {
 
     @Override
     protected TypeEvaluator getEvaluator() {
-        return new SinEvaluator(0,0,0);
+        return new MotionEvaluator(0,0,0);
     }
 
     @Override

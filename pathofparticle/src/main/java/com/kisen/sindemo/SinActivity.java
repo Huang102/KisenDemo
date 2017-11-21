@@ -7,8 +7,8 @@ import android.os.Bundle;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import com.kisen.sindemo.util.SinEvaluator;
-import com.kisen.sindemo.util.SinPath;
+import com.kisen.sindemo.util.MotionEvaluator;
+import com.kisen.sindemo.util.MotionPath;
 
 public class SinActivity extends BaseActivity implements SeekBar.OnSeekBarChangeListener {
 
@@ -23,8 +23,8 @@ public class SinActivity extends BaseActivity implements SeekBar.OnSeekBarChange
     }
 
     @Override
-    protected SinPath getPath() {
-        SinPath path = new SinPath();
+    protected MotionPath getPath() {
+        MotionPath path = new MotionPath();
         path.move(0, 0);
         path.sin(800, 0);
         return path;
@@ -32,7 +32,7 @@ public class SinActivity extends BaseActivity implements SeekBar.OnSeekBarChange
 
     @Override
     protected TypeEvaluator getEvaluator() {
-        return  new SinEvaluator(awp[0], awp[1], awp[2]);
+        return  new MotionEvaluator(awp[0], awp[1], awp[2]);
     }
 
     protected void setupView() {
@@ -55,7 +55,7 @@ public class SinActivity extends BaseActivity implements SeekBar.OnSeekBarChange
             public void onAnimationUpdate(ValueAnimator animation) {
                 if (changed) {
                     changed = false;
-                    animator.setEvaluator(new SinEvaluator(awp[0], awp[1], awp[2]));
+                    animator.setEvaluator(new MotionEvaluator(awp[0], awp[1], awp[2]));
                 }
             }
         });

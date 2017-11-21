@@ -1,7 +1,6 @@
 package com.kisen.sindemo.util;
 
 import android.animation.TypeEvaluator;
-import android.util.Log;
 
 /**
  * @Title :
@@ -10,29 +9,29 @@ import android.util.Log;
  * Created by huang on 2017/2/27.
  */
 
-public class SinEvaluator implements TypeEvaluator<SinPoint> {
+public class MotionEvaluator implements TypeEvaluator<MotionPoint> {
 
     private float a, w, p;
 
     /**
      * 控制三角函数的三个变量值
      */
-    public SinEvaluator(float a, float w, float p) {
+    public MotionEvaluator(float a, float w, float p) {
         this.a = a;
         this.w = w;
         this.p = p;
     }
 
     @Override
-    public SinPoint evaluate(float fraction, SinPoint startValue, SinPoint endValue) {
+    public MotionPoint evaluate(float fraction, MotionPoint startValue, MotionPoint endValue) {
         //fraction == time
         float x, y;
         switch (endValue.getType()) {
-            case SinPoint.SIN:
+            case MotionPoint.SIN:
                 x = startValue.getX() + (endValue.getX() - startValue.getX()) * fraction;
                 y = (float) (a * Math.sin(w * x + p));
                 break;
-            case SinPoint.CIRCLE:
+            case MotionPoint.CIRCLE:
 //                x = fraction < 0.5 ? endValue.getR() * fraction * 4 : endValue.getR() * 4 * (1 - fraction);
 //                float v = (float) Math.sqrt(endValue.getR() * endValue.getR() - (x - endValue.getX()) * (x - endValue.getX())) + endValue.getY();
 //                y = fraction < 0.5 ? -v : v;
@@ -41,7 +40,7 @@ public class SinEvaluator implements TypeEvaluator<SinPoint> {
                 x = (float) (endValue.getX() - endValue.getR() * Math.cos(theta));
                 y = (float) (endValue.getY() - endValue.getR() * Math.sin(theta));
                 break;
-            case SinPoint.CURVE:
+            case MotionPoint.CURVE:
                 int order = endValue.getOrder();
                 float[] points = endValue.getPoints();
                 int length = points.length;
@@ -50,13 +49,13 @@ public class SinEvaluator implements TypeEvaluator<SinPoint> {
                 x = bT(true, fraction, startValue, endValue);
                 y = bT(false, fraction, startValue, endValue);
                 break;
-            case SinPoint.FIBBONACCI:
+            case MotionPoint.FIBBONACCI:
                 int count = endValue.getCount();
                 //当前所在的螺旋线(数列中第几个数对应的弧)
                 int currentIndex = (int) (fraction * count) + 1;
                 //每段四分之一圆弧的运动时间
                 float t_count = 1f / count;
-                int currentR = fibbonacci(currentIndex);
+                int currentR = fibonacci(currentIndex);
                 //当前运动圆弧轨迹的原点
                 float ox = fibOx(currentIndex, endValue);
                 float oy = fibOy(currentIndex, endValue);
@@ -95,44 +94,44 @@ public class SinEvaluator implements TypeEvaluator<SinPoint> {
                 y = 0;
                 break;
         }
-        return SinPoint.move(x, y);
+        return MotionPoint.move(x, y);
     }
 
     /**
      * 得到斐波那契数列对应位置的值
      * [（1＋√5）/2]^n /√5 － [（1－√5）/2]^n /√5
      */
-    public int fibbonacci(int index) {
+    public int fibonacci(int index) {
         int f;
         double sqrt5 = Math.sqrt(5);
         f = (int) (Math.pow(((1 + sqrt5) / 2), index) / sqrt5 - Math.pow(((1 - sqrt5) / 2), index) / sqrt5);
         if (f == 0)
-            return fibbonacci(index - 1);
+            return fibonacci(index - 1);
         return f;
     }
 
-    private float fibOy(int index, SinPoint endValue) {
+    private float fibOy(int index, MotionPoint endValue) {
         if (index % 2 == 1)
             index = index - 1;
         if (index == 2 || index == 0)
             return endValue.getY();
         //index % 4 == 1    判断是否是第二象限
-        return fibOy(index - 2, endValue) + (index % 4 == 0 ? 1 : -1) * fibbonacci(index - 2);
+        return fibOy(index - 2, endValue) + (index % 4 == 0 ? 1 : -1) * fibonacci(index - 2);
     }
 
-    private float fibOx(int index, SinPoint endValue) {
+    private float fibOx(int index, MotionPoint endValue) {
         if (index % 2 == 0)
             index = index - 1;
         if (index == 1)
             return endValue.getX();
         //(index + 1) % 4 == 0   判断是否是第三象限
-        return fibOx(index - 2, endValue) + ((index + 1) % 4 == 0 ? 1 : -1) * fibbonacci(index - 2);
+        return fibOx(index - 2, endValue) + ((index + 1) % 4 == 0 ? 1 : -1) * fibonacci(index - 2);
     }
 
     /**
      * 贝塞尔曲线公式
      */
-    private float bT(boolean x, float t, SinPoint startValue, SinPoint endValue) {
+    private float bT(boolean x, float t, MotionPoint startValue, MotionPoint endValue) {
         float _t = 1 - t;
         //贝塞尔曲线阶数
         int order = endValue.getOrder();

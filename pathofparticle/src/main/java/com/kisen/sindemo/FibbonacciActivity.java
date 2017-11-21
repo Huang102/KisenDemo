@@ -2,14 +2,10 @@ package com.kisen.sindemo;
 
 import android.animation.Animator;
 import android.animation.TypeEvaluator;
-import android.animation.ValueAnimator;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.Toast;
 
-import com.kisen.sindemo.util.SinEvaluator;
-import com.kisen.sindemo.util.SinPath;
-import com.kisen.sindemo.util.SinPoint;
+import com.kisen.sindemo.util.MotionEvaluator;
+import com.kisen.sindemo.util.MotionPath;
 
 public class FibbonacciActivity extends BaseActivity {
 
@@ -20,16 +16,16 @@ public class FibbonacciActivity extends BaseActivity {
     }
 
     @Override
-    protected SinPath getPath() {
-        SinPath path = new SinPath();
+    protected MotionPath getPath() {
+        MotionPath path = new MotionPath();
         path.move(301, 0);
-        path.fibbonacci(300, 0, 14);
+        path.fibonacci(300, 0, 14);
         return path;
     }
 
     @Override
     protected TypeEvaluator getEvaluator() {
-        return new SinEvaluator(0, 0, 0);
+        return new MotionEvaluator(0, 0, 0);
     }
 
     @Override

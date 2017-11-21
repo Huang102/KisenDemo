@@ -10,8 +10,8 @@ import android.view.View;
 
 import com.kisen.sindemo.util.BgView;
 import com.kisen.sindemo.util.ObjectAnimatorHelper;
-import com.kisen.sindemo.util.SinPath;
-import com.kisen.sindemo.util.SinPoint;
+import com.kisen.sindemo.util.MotionPath;
+import com.kisen.sindemo.util.MotionPoint;
 
 /**
  * @Title :
@@ -43,13 +43,13 @@ public abstract class BaseActivity extends AppCompatActivity {
         animator = ObjectAnimatorHelper.object(this, getEvaluator(), getPath());
     }
 
-    protected abstract SinPath getPath();
+    protected abstract MotionPath getPath();
 
     protected abstract TypeEvaluator getEvaluator();
 
     protected abstract void setupView();
 
-    public void setPoint(SinPoint point) {
+    public void setPoint(MotionPoint point) {
         pointView.setTranslationX(point.getX());
         pointView.setTranslationY(point.getY());
         bgView.lineTo(point.getX(), point.getY());

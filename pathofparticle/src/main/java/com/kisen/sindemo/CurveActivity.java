@@ -6,9 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.kisen.sindemo.util.SinEvaluator;
-import com.kisen.sindemo.util.SinPath;
-import com.kisen.sindemo.util.SinPoint;
+import com.kisen.sindemo.util.MotionEvaluator;
+import com.kisen.sindemo.util.MotionPath;
+import com.kisen.sindemo.util.MotionPoint;
 
 import java.util.ArrayList;
 
@@ -25,8 +25,8 @@ public class CurveActivity extends BaseActivity {
     }
 
     @Override
-    protected SinPath getPath() {
-        SinPath path = new SinPath();
+    protected MotionPath getPath() {
+        MotionPath path = new MotionPath();
         path.move(0, 0);
         path.curve(order, points);
         return path;
@@ -34,7 +34,7 @@ public class CurveActivity extends BaseActivity {
 
     @Override
     protected TypeEvaluator getEvaluator() {
-        return new SinEvaluator(0, 0, 0);
+        return new MotionEvaluator(0, 0, 0);
     }
 
     @Override
@@ -48,10 +48,10 @@ public class CurveActivity extends BaseActivity {
                 if (isReset) {
                     bgView.start();
                     curve.setText("重置");
-                    ArrayList<SinPoint> points = bgView.getPoints();
+                    ArrayList<MotionPoint> points = bgView.getPoints();
                     float[] floats = new float[points.size() * 2];
                     for (int i = 0; i < points.size(); i++) {
-                        SinPoint point = points.get(i);
+                        MotionPoint point = points.get(i);
                         floats[2 * i] = point.getX();
                         floats[2 * i + 1] = point.getY();
                     }
@@ -60,7 +60,7 @@ public class CurveActivity extends BaseActivity {
                 } else {//重置
                     curve.setText("开始");
                     bgView.clear();
-                    setPoint(SinPoint.move(0, 0));
+                    setPoint(MotionPoint.move(0, 0));
                 }
             }
         });

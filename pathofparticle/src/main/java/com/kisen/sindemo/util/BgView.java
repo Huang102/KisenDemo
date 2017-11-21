@@ -24,7 +24,7 @@ public class BgView extends View {
     private float lastX, lastY;
     private float baseY;
     private boolean clear, start;
-    private ArrayList<SinPoint> points;
+    private ArrayList<MotionPoint> points;
 
     public BgView(Context context) {
         this(context, null);
@@ -57,7 +57,7 @@ public class BgView extends View {
             case MotionEvent.ACTION_DOWN:
                 float x = event.getX();
                 float y = event.getY() - lastY;
-                points.add(SinPoint.move(x, y));
+                points.add(MotionPoint.move(x, y));
                 break;
         }
         return super.onTouchEvent(event);
@@ -88,7 +88,7 @@ public class BgView extends View {
         invalidate();
     }
 
-    public ArrayList<SinPoint> getPoints() {
+    public ArrayList<MotionPoint> getPoints() {
         return points;
     }
 
@@ -103,7 +103,7 @@ public class BgView extends View {
         if (start) {
             start = false;
             for (int i = 0; i < points.size(); i++) {
-                SinPoint point = points.get(i);
+                MotionPoint point = points.get(i);
                 canvas.drawPoint(point.getX(), point.getY() + lastY, paintP);
             }
         }

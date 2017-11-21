@@ -7,7 +7,7 @@ package com.kisen.sindemo.util;
  * Created by huang on 2017/2/27.
  */
 
-public class SinPoint {
+public class MotionPoint {
 
     public static final int MOVE = 0;
     public static final int SIN = 1;
@@ -28,14 +28,14 @@ public class SinPoint {
     /**
      * Circle
      */
-    SinPoint(float x, float y, float r) {
+    MotionPoint(float x, float y, float r) {
         this.type = CIRCLE;
         this.x = x;
         this.y = y;
         this.r = r;
     }
 
-    SinPoint(int order, float... points) {
+    MotionPoint(int order, float... points) {
         this.type = CURVE;
         this.order = order;
         this.points = points;
@@ -44,33 +44,33 @@ public class SinPoint {
     /**
      * 通用类型
      */
-    SinPoint(int type, float x, float y) {
+    MotionPoint(int type, float x, float y) {
         this.type = type;
         this.x = x;
         this.y = -y;
     }
 
-    public static SinPoint fibbonacci(float x, float y, int count) {
-        return new SinPoint(FIBBONACCI, x, y).setCount(count);
+    public static MotionPoint fibonacci(float x, float y, int count) {
+        return new MotionPoint(FIBBONACCI, x, y).setCount(count);
     }
 
-    public static SinPoint curve(int order, float... points) {
-        return new SinPoint(order, points);
+    public static MotionPoint curve(int order, float... points) {
+        return new MotionPoint(order, points);
     }
 
-    public static SinPoint circle(float x, float y, float r) {
-        return new SinPoint(x, y, r);
+    public static MotionPoint circle(float x, float y, float r) {
+        return new MotionPoint(x, y, r);
     }
 
-    public static SinPoint sin(float x, float y) {
-        return new SinPoint(SIN, x, y);
+    public static MotionPoint sin(float x, float y) {
+        return new MotionPoint(SIN, x, y);
     }
 
-    public static SinPoint move(float x, float y) {
-        return new SinPoint(MOVE, x, y);
+    public static MotionPoint move(float x, float y) {
+        return new MotionPoint(MOVE, x, y);
     }
 
-    public SinPoint setCount(int count) {
+    public MotionPoint setCount(int count) {
         this.count = count;
         return this;
     }
